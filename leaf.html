@@ -1,0 +1,55 @@
+<html>
+<head>
+<style>
+
+.leafC {
+	offset-path: path('M19,15 C349,41 31,211 504,281');
+	width:27px;
+	height:27px;
+}
+.leaf {
+	width:27px;
+	height:27px;
+	background:url('leaf.png');
+}
+</style>
+
+</head>
+<body>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+
+
+<script>
+
+	var keyframes = [
+	  { offsetDistance: 0 },
+	  { offsetDistance: '100%' }
+	];
+	var m = document.querySelectorAll('.leafC');
+	for (var i = 0; i < m.length; i++) {
+	    var player = m[i].animate(keyframes, {
+	      duration: 3000,
+	      iterations: Infinity,
+	      easing: 'linear',
+	      delay: 9000 * (i / m.length)
+	    });
+	    m[i].querySelector('.leaf').animate([
+		{ transform: 'rotate(0deg)' },
+		{ transform: 'rotate(160deg)'},
+		{ transform: 'rotate(0deg)'}
+	    ], {
+     		duration: 4000,
+	      	iterations: Infinity
+    	});
+	}
+
+</script>
+</body>
+</html>
