@@ -3,14 +3,14 @@
 <style>
 
 .leafC {
-	offset-path: path('M19,15 C349,41 31,211 504,281');
-	width:27px;
-	height:27px;
+	display:block;
+	margin-left:-36px;
+	width:26px;
+	height:26px;
 }
 .leaf {
-	width:27px;
-	height:27px;
-	background:url('leaf.png');
+	width:26px;
+	height:26px;
 }
 </style>
 
@@ -24,9 +24,28 @@
 <div class='leafC'><div class='leaf'></div></div>
 <div class='leafC'><div class='leaf'></div></div>
 <div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
+<div class='leafC'><div class='leaf'></div></div>
 
 
 <script>
+
+var fuzz = function(about, percent) {
+	const bias = (Math.random() > 0.5) ? 1 : -1;
+	const result = about + (about * bias * percent)
+	return result;
+}
+
+var paths = [
+"M0,0 C320,0 320,480 640,480",
+"M19,15 C349,41 31,211 504,281",
+"M 0,0 C 0,150 400,100 400,250"
+]
+var backgrounds = [ "leaf.png", "leaf-brown.png"]
 
 	var keyframes = [
 	  { offsetDistance: 0 },
@@ -34,13 +53,21 @@
 	];
 	var m = document.querySelectorAll('.leafC');
 	for (var i = 0; i < m.length; i++) {
+		let chosenIndex = i % paths.length;
+		let path = paths[chosenIndex]
+		m[i].style.offsetPath = `path('${path}')`
 	    var player = m[i].animate(keyframes, {
-	      duration: 3000,
+	      duration: fuzz(3000, 0.10),
 	      iterations: Infinity,
 	      easing: 'linear',
-	      delay: 9000 * (i / m.length)
+	      delay: 9000*(i / m.length)
 	    });
-	    m[i].querySelector('.leaf').animate([
+	    const leaf = m[i].querySelector('.leaf')
+	    leaf.style.background = `url(${(Math.random() > 0.5) ? 'leaf.png' : 'leaf-brown.png'})`;
+		leaf.animate([ { opacity: 0 },
+                  { opacity: 1 } ],
+                4000);
+	    leaf.animate([
 		{ transform: 'rotate(0deg)' },
 		{ transform: 'rotate(160deg)'},
 		{ transform: 'rotate(0deg)'}

@@ -1,0 +1,92 @@
+<html>
+<head>
+<style>
+
+.marker2 {
+  offset-path: path('M 5,5 Q 20,0 35,5 Q 40,20 35,35 Q 20,40 5,35 Q 0,20 5,5 Z');
+  animation: move 3s ease-in-out infinite;
+}
+
+.marker2b {
+  offset-path: path('M 5,5 Q 20,0 35,5 Q 40,20 35,35 Q 20,40 5,35 Q 0,20 5,5 Z');
+  animation: move2 3s ease-in-out infinite;
+}
+
+
+@keyframes move {
+  0% {
+	offset-distance: 50%;
+  }
+  50% {
+    offset-distance: 75%;
+  }
+  100% {
+  	offset-distance: 50%;
+  }
+}
+
+@keyframes move2 {
+  0% {
+	offset-distance: 75%;
+  }
+  50% {
+    offset-distance: 50%;
+  }
+  100% {
+  	offset-distance: 75%;
+  }
+}
+
+
+
+.track {
+  stroke: #000;
+}
+</style>
+
+</head>
+<body>
+
+<div>
+<svg viewbox="0,0 14,14" width="200px" height="200px" >
+
+ <path
+    class="track"
+    fill="none"
+    stroke-width="0.25"
+    d="M 0,0 L 10,0 L 12,14 L 0,10 Z"
+  />
+
+</svg>
+</div>
+
+<div>
+<svg viewbox="0,0 40,40" width="200px" height="200px">
+
+ <path
+    class="track"
+    fill="none"
+    stroke-width="0.25"
+    d="M 5,5 Q 20,0 35,5 Q 40,20 35,35 Q 20,40 5,35 Q 0,20 5,5 Z" />
+
+  <circle class="marker2" r="1" fill="orange"></circle>
+  <circle class="marker2b" r="1" fill="red"></circle>
+
+</svg>
+
+</div>
+
+<div>
+<svg viewbox="0,0 10,10" width="200px" height="200px">
+
+ <path
+    class="track"
+    fill="none"
+    stroke-width="0.25"
+    d="M 5 5 m -4, 0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0"
+  />
+
+</svg>
+</div>
+</body>
+</html>
