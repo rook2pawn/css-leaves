@@ -1,15 +1,13 @@
 <html>
 <head>
+  <script type='text/javascript' src='jquery-3.3.1.slim.min.js'></script>
   <style>
     .butterfly {
       width: 70px;
       height: 65px;
       background-image: url("butterfly.png");
-      animation: playX 1s steps(34) infinite,
-      moveButterfly 4s ease-out infinite;
-
-      offset-path:path("M 0,0 L 150,150");
     }
+
     @keyframes playX {
       from {background-position-x: 0px;}
       to {background-position-x: -2380px;}
@@ -24,5 +22,42 @@
 <body>
 
 <div class='butterfly'></div>
+
+
+
+<script>
+  /*
+      animation: playX 1s steps(34) infinite,
+      moveButterfly 4s ease-out infinite;
+
+      offset-path:path("M 0,0 L 150,150");
+
+  */
+  $().ready(() => {
+
+    const el = $('div.butterfly').get(0)
+    el.style.offsetPath = 'path("M 0,0 L 150,150")'
+    el.animate([
+      {backgroundPositionX : '0px'},
+      {backgroundPositionX : '-2380px'}
+    ], {
+      easing: 'steps(34)',
+      duration: 1000,
+      iterations: Infinity
+    })
+    const moveAnim = el.animate([
+      {offsetDistance : 0},
+      {offsetDistance: '100%'}
+    ], {
+      duration: 4000,
+      easing:'ease-out',
+      iterations:1
+    })
+    moveAnim.onfinish = () => {
+      console.log("FINISHED!")
+      moveAnim.reverse()
+    };
+  })
+</script>
 </body>
 </html>
