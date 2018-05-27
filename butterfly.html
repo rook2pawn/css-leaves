@@ -1,0 +1,28 @@
+<html>
+<head>
+  <style>
+    .butterfly {
+      width: 70px;
+      height: 65px;
+      background-image: url("butterfly.png");
+      animation: playX 1s steps(34) infinite,
+      moveButterfly 4s ease-out infinite;
+
+      offset-path:path("M 0,0 L 150,150");
+    }
+    @keyframes playX {
+      from {background-position-x: 0px;}
+      to {background-position-x: -2380px;}
+    }
+    @keyframes moveButterfly {
+      from {offset-distance:0;}
+      to {offset-distance:100%;}
+    }
+
+  </style>
+</head>
+<body>
+
+<div class='butterfly'></div>
+</body>
+</html>
