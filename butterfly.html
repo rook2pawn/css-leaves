@@ -35,7 +35,7 @@
   */
   $().ready(() => {
 
-    const el = $('div.butterfly').get(0)
+    const el = document.querySelector('.butterfly')
     el.style.offsetPath = 'path("M 0,0 L 150,150")'
     el.animate([
       {backgroundPositionX : '0px'},
@@ -48,16 +48,20 @@
     const moveAnim = el.animate([
       {offsetDistance : 0},
       {offsetDistance: '100%'}
-    ], {
+    ], 
+    {
       duration: 4000,
       easing:'ease-out',
-      iterations:1
+      iterations:2
     })
-    moveAnim.onfinish = () => {
+
+    console.log(moveAnim);
+    moveAnim.finished.then(function() {
       console.log("FINISHED!")
       moveAnim.reverse()
-    };
-  })
+    })
+
+  });
 </script>
 </body>
 </html>
