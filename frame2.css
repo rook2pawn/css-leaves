@@ -1,0 +1,55 @@
+.marker2 {
+  offset-path: path('M 5,5 Q 20,0 35,5 Q 40,20 35,35 Q 20,40 5,35 Q 0,20 5,5 Z');
+  animation: move 2s ease-in-out infinite;
+}
+
+.marker2b {
+  offset-path: path('M 5,5 Q 20,0 35,5 Q 40,20 35,35 Q 20,40 5,35 Q 0,20 5,5 Z');
+  animation: move2 2s ease-in-out infinite;
+}
+
+
+@keyframes move {
+  0% {
+	offset-distance: 50%;
+  }
+  50% {
+    offset-distance: 75%;
+  }
+  100% {
+  	offset-distance: 50%;
+  }
+}
+
+@keyframes move2 {
+  0% {
+	offset-distance: 75%;
+  }
+  50% {
+    offset-distance: 50%;
+  }
+  100% {
+  	offset-distance: 75%;
+  }
+}
+
+.track {
+  stroke: #000;
+}
+
+text {
+  fill: #FF9800;
+  letter-spacing:0.5px;
+  font-family:Luckiest Guy;
+  font-size:5px;
+  paint-order: stroke;
+  stroke: #000000;
+  stroke-width: 1px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+}
+
+
+.frame {
+  border:thin solid red;
+}

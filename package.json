@@ -1,0 +1,29 @@
+{
+  "name": "css-leaves",
+  "version": "1.0.0",
+  "description": "",
+  "main": "butterfly.js",
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "choo": "^6.11.0",
+    "nanocomponent": "^6.5.2",
+    "nanohtml": "^1.2.4",
+    "nanostate": "^1.2.1",
+    "sheetify": "^7.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "browserify -t sheetify frame-page.js -o frame-bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rook2pawn/css-leaves.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rook2pawn/css-leaves/issues"
+  },
+  "homepage": "https://github.com/rook2pawn/css-leaves#readme"
+}

@@ -8,6 +8,25 @@
       background-image: url("butterfly.png");
     }
 
+    .butterfly-rest {
+      width: 70px;
+      height: 65px;
+      background-image: url("butterfly-rest.png");
+    }
+
+    .butterfly-fly-side{
+      width: 70px;
+      height: 65px;
+      background-image: url("butterfly-fly-side.png");
+      animation: playButterflyFlySide 3.5s steps(84) infinite;
+    }
+
+    @keyframes playButterflyFlySide {
+      from {background-position-x: 0px;}
+      to {background-position-x: -5880px;}
+    }
+
+
     @keyframes playX {
       from {background-position-x: 0px;}
       to {background-position-x: -2380px;}
@@ -22,10 +41,13 @@
 <body>
 
 <div class='butterfly'></div>
+<div class='butterfly-rest'></div>
+<div class='butterfly-fly-side'></div>
 
-
+  <script type='text/javascript' src='polyfill.js'></script>
 
 <script>
+
   /*
       animation: playX 1s steps(34) infinite,
       moveButterfly 4s ease-out infinite;
@@ -48,19 +70,20 @@
     const moveAnim = el.animate([
       {offsetDistance : 0},
       {offsetDistance: '100%'}
-    ], 
+    ],
     {
-      duration: 4000,
+      fill:'forwards',
+      duration: 2000,
       easing:'ease-out',
-      iterations:2
+      iterations:Infinity
     })
 
-    console.log(moveAnim);
+/*
     moveAnim.finished.then(function() {
-      console.log("FINISHED!")
       moveAnim.reverse()
     })
 
+*/
   });
 </script>
 </body>
