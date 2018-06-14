@@ -10,17 +10,21 @@ textPath {
 	fill:red;
 	font-size:24px;
 }
-.track1 {
+#track1 {
   stroke: blue;
   stroke-dasharray: 100;
   transform-origin: 300px 250px;
-  animation: spinner 10s linear infinite;
+  animation: 10s spinner linear infinite;
   filter: url(#glow);
 }
 
-/*
-*/
-
+#track2 {
+  stroke: orange;
+  stroke-dasharray: 300;
+  transform-origin: 300px 250px;
+  animation: 5s spinner linear infinite;
+  filter: url(#glow);
+}
 @keyframes dash {
   from {
   	stroke-dashoffset: 0;
@@ -31,12 +35,12 @@ textPath {
 }
 
 @keyframes spinner {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-    	transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+  	transform: rotate(360deg);
+  }
 }
 
 
@@ -54,7 +58,21 @@ textPath {
 </head>
 <body>
 
+
 <svg viewbox="0,0 1000,1000" width="400px" height="400px">
+  <style>
+    .small { font: italic 13px sans-serif; }
+    .heavy { font: bold 30px sans-serif; }
+
+    /* Note that the color of the text is set with the    *
+     * fill property, the color property is for HTML only */
+    .Rrrrr { font: italic 56px Pacifico; fill: red;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+
+
+    }
+
+  </style>
 	<defs>
     <filter id="sofGlow">
       <!-- Thicken out the original shape -->
@@ -94,19 +112,27 @@ textPath {
 			</femerge>
 		</filter>
 	</defs>
-  <!-- the path to be animated along -->
   <path
-        id="track1"
-    class="track1"
+    id="track2"
+    fill="none"
+    stroke-width="15"
+    d="M 100,250 A 50,50 0,1,1 500,250 A 50,50 0,1,1 100,250 Z"
+  />
+  <path
+    id="track1"
     fill="none"
     stroke-width="10"
     d="M 100,250 A 50,50 0,1,1 500,250 A 50,50 0,1,1 100,250 Z"
   />
+  <circle cx="300" cy="250" r="195" fill="#333"/>
+  <circle cx="300" cy="250" r="190" stroke="#CCC" stroke-width="2" fill="none"/>
+
  <text width="3">
     <textPath alignment-baseline="top" xlink:href="#track1">
       Dangerous Curves Ahead
     </textPath>
   </text>
+  <text x="300" y="250" text-anchor="middle" class="Rrrrr">Play Casual</text>
 </svg>
 
 <script>
