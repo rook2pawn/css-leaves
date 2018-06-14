@@ -1,0 +1,119 @@
+<html>
+<head>
+
+<style>
+
+body {
+	background:#FFF
+}
+textPath {
+	fill:red;
+	font-size:24px;
+}
+.track1 {
+  stroke: blue;
+  stroke-dasharray: 100;
+  transform-origin: 300px 250px;
+  animation: spinner 10s linear infinite;
+  filter: url(#glow);
+}
+
+/*
+*/
+
+@keyframes dash {
+  from {
+  	stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 10;
+  }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+    	transform: rotate(360deg);
+    }
+}
+
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+</style>
+
+</head>
+<body>
+
+<svg viewbox="0,0 1000,1000" width="400px" height="400px">
+	<defs>
+    <filter id="sofGlow">
+      <!-- Thicken out the original shape -->
+      <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+
+      <!-- Use a gaussian blur to create the soft blurriness of the glow -->
+      <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
+
+      <!-- Change the colour -->
+      <feFlood flood-color="rgb(0,186,255)" result="glowColor" />
+
+      <!-- Color in the glows -->
+      <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+
+      <!--  Layer the effects together -->
+      <feMerge>
+        <feMergeNode in="softGlow_colored"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+
+    </filter>
+
+
+
+		<filter id="glow">
+      <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+      <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
+      <feFlood flood-color="rgb(0,186,255)" result="glowColor" />
+      <!-- Color in the glows -->
+      <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+			<fegaussianblur class="blur" result="coloredBlur" stddeviation="4"></fegaussianblur>
+			<femerge>
+				<femergenode in="coloredBlur"></femergenode>
+        <femergenode in="coloredBlur"></femergenode>
+        <feMergeNode in="softGlow_colored"/>
+				<femergenode in="SourceGraphic"></femergenode>
+			</femerge>
+		</filter>
+	</defs>
+  <!-- the path to be animated along -->
+  <path
+        id="track1"
+    class="track1"
+    fill="none"
+    stroke-width="10"
+    d="M 100,250 A 50,50 0,1,1 500,250 A 50,50 0,1,1 100,250 Z"
+  />
+ <text width="3">
+    <textPath alignment-baseline="top" xlink:href="#track1">
+      Dangerous Curves Ahead
+    </textPath>
+  </text>
+</svg>
+
+<script>
+	var path = document.querySelector("#track1");
+	console.log(path.getTotalLength())
+</script>
+
+
+</body>
+</html>
