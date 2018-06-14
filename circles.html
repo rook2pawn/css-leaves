@@ -12,18 +12,19 @@ textPath {
 }
 #track1 {
   stroke: blue;
-  stroke-dasharray: 100;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
   transform-origin: 300px 250px;
-  animation: 10s spinner linear infinite;
-  filter: url(#glow);
+  animation: 10s spinner2 linear infinite;
+  filter: url(#glowBlue);
 }
 
 #track2 {
   stroke: orange;
-  stroke-dasharray: 300;
+  stroke-dasharray: 600;
   transform-origin: 300px 250px;
   animation: 5s spinner linear infinite;
-  filter: url(#glow);
+  filter: url(#glowOrange);
 }
 @keyframes dash {
   from {
@@ -31,6 +32,15 @@ textPath {
   }
   to {
     stroke-dashoffset: 10;
+  }
+}
+
+@keyframes spinner2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
   }
 }
 
@@ -95,9 +105,23 @@ textPath {
 
     </filter>
 
+    <filter id="glowOrange">
+      <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+      <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
+      <feFlood flood-color="rgb(255,165,0)" result="glowColor" />
+      <!-- Color in the glows -->
+      <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+      <fegaussianblur class="blur" result="coloredBlur" stddeviation="4"></fegaussianblur>
+      <femerge>
+        <femergenode in="coloredBlur"></femergenode>
+        <femergenode in="coloredBlur"></femergenode>
+        <feMergeNode in="softGlow_colored"/>
+        <femergenode in="SourceGraphic"></femergenode>
+      </femerge>
+    </filter>
 
 
-		<filter id="glow">
+		<filter id="glowBlue">
       <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
       <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
       <feFlood flood-color="rgb(0,186,255)" result="glowColor" />
