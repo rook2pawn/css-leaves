@@ -22,14 +22,6 @@
 <div class='leafC'><div class='leaf'></div></div>
 <div class='leafC'><div class='leaf'></div></div>
 <div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
-<div class='leafC'><div class='leaf'></div></div>
 
 
 <script>
@@ -41,9 +33,10 @@ var fuzz = function(about, percent) {
 }
 
 var paths = [
-"M0,0 C320,0 320,480 640,480",
-"M19,15 C349,41 31,211 504,281",
-"M 0,0 C 0,150 400,100 400,250"
+"M 0,0 C3 20,0 320,480 640,480",
+"M 0,150 C 349,41 31,211 604,281",
+"M 0,230 C 0,150 400,100 600,250",
+"M 0,230 C 320,0 320,480 640,480"
 ]
 var backgrounds = [ "leaf.png", "leaf-brown.png"]
 
@@ -60,19 +53,21 @@ var backgrounds = [ "leaf.png", "leaf-brown.png"]
 	      duration: fuzz(3000, 0.10),
 	      iterations: Infinity,
 	      easing: 'linear',
-	      delay: 9000*(i / m.length)
+	      iterationStart: 0.5
 	    });
+// 	      delay: 9000*(i / m.length)
+
 	    const leaf = m[i].querySelector('.leaf')
-	    leaf.style.background = `url(${(Math.random() > 0.5) ? 'leaf.png' : 'leaf-brown.png'})`;
+	    leaf.style.background = `url(${(Math.random() > 0.2) ? 'leaf.png' : 'leaf-brown.png'})`;
 		leaf.animate([ { opacity: 0 },
-                  { opacity: 1 } ],
-                4000);
+        { opacity: 1 } ], { duration : 2000, easing: 'steps(1)'});
 	    leaf.animate([
 		{ transform: 'rotate(0deg)' },
 		{ transform: 'rotate(160deg)'},
 		{ transform: 'rotate(0deg)'}
 	    ], {
      		duration: 4000,
+     		easing:'ease-in'
 	      	iterations: Infinity
     	});
 	}

@@ -1,0 +1,74 @@
+<html>
+<head>
+  <script type='text/javascript' src='jquery-3.3.1.slim.min.js'></script>
+  <style>
+.box {
+  border: 50px double orange;
+  border-image: url(border-image.png) 25 30 10 20 repeat;
+}
+
+.repeating-linear {
+  color: pink;
+  border: 10px solid pink;
+  border-image: repeating-linear-gradient( 45deg, pink, pink 1%, purple 1%, purple 8%) 10;
+}
+
+.repeating-linear:hover {
+  border-image: repeating-linear-gradient( 45deg, purple, purple 1%, pink 1%, pink 8%) 10;
+  color: purple;
+}
+
+.blizzard {
+  border:50px double;
+  border-image: url(blizzard.png) 81 81 81 81 fill stretch;
+}
+
+.blizzard-small {
+  border:50px double;
+  border-image: url(blizzard-small.png) 44 44 44 44 fill stretch;
+}
+.frameModal {
+  border:50px double;
+  border-image: url(blizzard.png) 81 81 81 81 fill stretch;
+}
+
+.notification {
+  width:200px;
+  height:200px;
+  padding:10px;
+  color:white;
+  font-size:14px;
+
+}
+
+  </style>
+}
+</head>
+<body>
+
+<h3>original box</h3>
+<img src='border-image.png'/>
+<div id='myBox' class='frameModal notification'>
+  Hey! You need to pick a username in order to start playing!
+  <input type='button' value='Epic!'/>
+</div>
+<script>
+
+  $().ready(() => {
+
+    var box = $('div#myBox').get(0);
+    box.animate([
+      { transform: 'scale(0.5) rotate(-20deg)' },
+      { transform: 'scale(0.8) rotate(-10deg)' },
+      { transform: 'scale(1.1) rotate(3deg)' },
+      {transform: 'scale(1) rotate(0deg)' }
+    ], {
+      easing: 'ease-out',
+      duration: 500,
+      iterations: 1
+    })
+
+  });
+</script>
+</body>
+</html>
