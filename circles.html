@@ -7,16 +7,21 @@ body {
 	background:#FFF
 }
 
-svg {
+svg.buttonCircle {
   width:250px;
   height:250px;
   border:thin solid red;
 }
-textPath {
+svg.buttonCircle .buttonText {
+  font: italic 56px Pacifico; fill: red;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+svg.buttonCircle textPath {
 	fill:red;
 	font-size:24px;
 }
-#track1 {
+svg.buttonCircle #track1 {
   stroke: blue;
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
@@ -25,18 +30,18 @@ textPath {
   filter: url(#glowBlue);
 }
 
-#track2 {
+svg.buttonCircle #track2 {
   stroke: orange;
   stroke-dasharray: 600;
   transform-origin: 300px 250px;
   animation: 5s spinner linear infinite;
   filter: url(#glowOrange);
 }
-svg circle#innerCircle {
+svg.buttonCircle circle#innerCircle {
   transition:transform 1s ease-out;
   transform:rotate3d(300, 250, 0, 0deg);
 }
-svg:hover circle#innerCircle {
+svg.buttonCircle:hover circle#innerCircle {
   transform:rotate3d(300, 250, 0, 180deg);
 }
 
@@ -86,47 +91,12 @@ svg:hover circle#innerCircle {
 <!--
 <svg viewbox="100 50 400 400">
 -->
-<svg viewbox="75 25 450 450">
-  <style>
-    .small { font: italic 13px sans-serif; }
-    .heavy { font: bold 30px sans-serif; }
-
-    /* Note that the color of the text is set with the    *
-     * fill property, the color property is for HTML only */
-    .Rrrrr { font: italic 56px Pacifico; fill: red;
-  animation: neon1 1.5s ease-in-out infinite alternate;
-
-
-    }
-
-  </style>
+<svg class='buttonCircle' viewbox="75 25 450 450">
 	<defs>
-    <filter id="sofGlow">
-      <!-- Thicken out the original shape -->
-      <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
-
-      <!-- Use a gaussian blur to create the soft blurriness of the glow -->
-      <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
-
-      <!-- Change the colour -->
-      <feFlood flood-color="rgb(0,186,255)" result="glowColor" />
-
-      <!-- Color in the glows -->
-      <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
-
-      <!--  Layer the effects together -->
-      <feMerge>
-        <feMergeNode in="softGlow_colored"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-
-    </filter>
-
     <filter id="glowOrange">
       <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
       <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
       <feFlood flood-color="rgb(255,165,0)" result="glowColor" />
-      <!-- Color in the glows -->
       <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
       <fegaussianblur class="blur" result="coloredBlur" stddeviation="4"></fegaussianblur>
       <femerge>
@@ -136,13 +106,10 @@ svg:hover circle#innerCircle {
         <femergenode in="SourceGraphic"></femergenode>
       </femerge>
     </filter>
-
-
 		<filter id="glowBlue">
       <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
       <feGaussianBlur in="thicken" stdDeviation="6" result="blurred" />
       <feFlood flood-color="rgb(0,186,255)" result="glowColor" />
-      <!-- Color in the glows -->
       <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
 			<fegaussianblur class="blur" result="coloredBlur" stddeviation="4"></fegaussianblur>
 			<femerge>
@@ -167,20 +134,7 @@ svg:hover circle#innerCircle {
   />
   <circle id='innerCircle' cx="300" cy="250" r="195" fill="#333"/>
   <circle cx="300" cy="250" r="190" stroke="#CCC" stroke-width="2" fill="none"/>
-
- <text width="3">
-    <textPath alignment-baseline="top" xlink:href="#track1">
-      Dangerous Curves Ahead
-    </textPath>
-  </text>
-  <text x="300" y="250" text-anchor="middle" class="Rrrrr">Play Casual</text>
+  <text x="300" y="250" text-anchor="middle" class="buttonText">Play Casual</text>
 </svg>
-
-<script>
-	var path = document.querySelector("#track1");
-	console.log(path.getTotalLength())
-</script>
-
-
 </body>
 </html>
